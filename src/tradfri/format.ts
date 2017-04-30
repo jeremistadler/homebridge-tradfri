@@ -7,10 +7,16 @@ const lightMap = {
   '5851': 'brightness',
   '5712': 'transitionTime',
   '5709': 'colorX',
-  '5710': 'colorY'
+  '5710': 'colorY',
+  '5706': 'color',
+  '9003': 'id'
 }
 
 const deviceMap = {
+  '9019': 'reachableState',
+  '9020': 'lastSeen',
+  '9002': 'createdAt',
+  '3': 'info',
   '9003': 'deviceId',
   '5750': 'type',
   '9001': 'name',

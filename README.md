@@ -1,28 +1,21 @@
-# homebridge-tradfri
-[![NPM Version](https://img.shields.io/npm/v/homebridge-tradfri.svg)](https://www.npmjs.com/package/homebridge-tradfri)
+# Tradfri Node Library
 
-IKEA Trådfri Gateway plugin for [Homebridge](https://github.com/nfarina/homebridge).
+IKEA Trådfri Gateway
 
 ## Features
 - Automatic discovery of the Trådfri gateway
 - Turn on/off lights
 - Adjust the brightness
 
-## To be implemented
-- Adjust color temperature (figuring out how to do this the best way)
-- Make the plugin work with third party HomeKit apps
-- Better error handling and logging
-
 ## Installation
 
-1. Install Homebridge using: `npm install -g homebridge`
-2. Install this plugin using: `npm install -g homebridge-tradfri`
+2. Install this plugin using: `npm install`
 3. Update your configuration file. See the sample below.
 
 ## Sample Configuration
 
 The PSK (Pre-Shared Key) can be found printed on the bottom of the IKEA Trådfri Gateway.
-This plugin makes use of coap-client which is part of libcoap. 
+This plugin makes use of coap-client which is part of libcoap.
 
 The plugin comes with prebuilt x86-64 binaries for macOS and Linux. There is no need to compile ```coap-client``` if this is what you're using. If not, you'll need to compile ```coap-client``` yourself and use the config property ```coapClientPath``` to point to the location of the ```coap-client``` binary.
 ```js
@@ -37,7 +30,7 @@ The plugin comes with prebuilt x86-64 binaries for macOS and Linux. There is no 
 ## Compiling libcoap
 Installing [libcoap](https://github.com/obgm/libcoap) as per the following instructions for Debian/Ubuntu:
 ```shell
-$ apt-get install libtool git build-essential install autoconf automake
+$ apt-get install libtool git build-essential autoconf automake
 $ git clone --recursive https://github.com/obgm/libcoap.git
 $ cd libcoap
 $ git checkout dtls

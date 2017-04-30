@@ -21,7 +21,7 @@ export module tradfri {
     log: (format: string, message: any) => void;
     coap: COAP.Client;
 
-    constructor (log, config, hostname, port) {
+    constructor (log, config: {psk: string}, hostname, port) {
       this.log = log
       this.coap = new COAP.Client(log, config, hostname, port)
     }
@@ -37,12 +37,9 @@ export module tradfri {
           })
 
           serial(funcs).then((data) => {
-            let devices = data.map((device) => {
+            const devices = data.map((device) => {
               let object = JSON.parse(device)
               return format.readable(object)
-            })
-            devices = devices.filter((device) => {
-              return device.type === deviceTypes.LIGHTBULB
             })
             resolve(devices)
           })
