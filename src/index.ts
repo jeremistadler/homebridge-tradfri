@@ -2,7 +2,7 @@
 
 import * as mdns from 'mdns';
 import { mutil } from './tradfri/mutil';
-import { tradfri } from './tradfri/tradfri';
+import { TradfriClient, DeviceTypes } from './tradfri/tradfri';
 
 
 
@@ -13,15 +13,19 @@ function init() {
     mdns.rst.makeAddressesUnique()
   ];
 
-  var client = null
+  var client: TradfriClient = null;
 
   const browser = mdns.createBrowser(mdns.udp('coap'), { resolverSequence: sequence })
   browser.on('serviceUp', (service) => {
-    client = new tradfri.Client((a,b) => console.log(a, b), {psk: 'xcfnC3cfeIQmrIcg'}, service.addresses.pop(), service.port)
+    client = new TradfriClient((a,b) => console.log(a, b), {psk: }, service.addresses.pop(), service.port)
 
     client.getDevices().then((devices) => {
       console.log('Devices', JSON.stringify(devices, null, 2));
       devices.forEach((device) => {
+
+        if (device.type === DeviceTypes.LIGHTBULB) {
+          client.setBrightness(device.deviceId, 1, 20);
+        }
       })
     }).catch((err) => {
       console.log(err)
